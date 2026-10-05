@@ -4,24 +4,23 @@ import Image from "next/image";
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200/80 transition-all">
-      {/* h-24 შევცვალეთ py-4 sm:py-6-ით, რომ ჰედერმა ლოგოს ზომასთან ერთად მოიმატოს */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between">
+      {/* py-2 sm:py-3 ვამცირებთ ზედა და ქვედა დაშორებას (padding) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 flex items-center justify-between">
         
-        {/* ლოგო - მკვეთრად გაზრდილი ზომით */}
+        {/* ლოგო - სიმაღლით შეზღუდული (h-10 sm:h-12), რომ ნავბარი არ გაიწელოს */}
         <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
           <Image
             src="/logo.png"
             alt="DataFly Logo"
-            width={400}
-            height={120}
-            /* ზომას ახლა სიგანით ვაკონტროლებთ: მობილურზე w-48, დიდ ეკრანზე w-72 */
-            className="w-48 sm:w-56 lg:w-72 h-auto object-contain"
+            width={240}
+            height={80}
+            className="h-9 sm:h-11 w-auto object-contain"
             priority
           />
         </Link>
 
         {/* მენიუს ლინკები */}
-        <nav className="hidden md:flex items-center gap-8 text-base font-semibold text-text-muted">
+        <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-text-muted">
           <Link 
             href="#services" 
             className="hover:text-tech-blue transition-colors duration-200"
@@ -52,7 +51,7 @@ export default function Navbar() {
         <div className="flex items-center">
           <Link
             href="#contact"
-            className="bg-tech-blue hover:bg-tech-blue-hover text-white px-6 py-2.5 rounded-lg font-semibold shadow-sm hover:shadow transition-all duration-200"
+            className="bg-tech-blue hover:bg-tech-blue-hover text-white px-5 py-2 rounded-lg text-sm font-semibold shadow-sm hover:shadow transition-all duration-200"
           >
             Get in Touch
           </Link>
