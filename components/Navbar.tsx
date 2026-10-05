@@ -4,7 +4,8 @@ import Image from "next/image";
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200/80 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+      {/* h-24 შევცვალეთ py-4 sm:py-6-ით, რომ ჰედერმა ლოგოს ზომასთან ერთად მოიმატოს */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between">
         
         {/* ლოგო - მკვეთრად გაზრდილი ზომით */}
         <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
@@ -13,7 +14,8 @@ export default function Navbar() {
             alt="DataFly Logo"
             width={400}
             height={120}
-            className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
+            /* ზომას ახლა სიგანით ვაკონტროლებთ: მობილურზე w-48, დიდ ეკრანზე w-72 */
+            className="w-48 sm:w-56 lg:w-72 h-auto object-contain"
             priority
           />
         </Link>
