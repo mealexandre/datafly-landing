@@ -124,9 +124,9 @@ export default function Hero() {
             <div className="relative mx-auto w-full max-w-lg lg:max-w-none rounded-2xl border-2 border-slate-200 bg-white p-2 shadow-2xl overflow-hidden">
               <div className="relative h-[400px] sm:h-[480px] w-full rounded-xl overflow-hidden bg-slate-900 group">
                 
-                {/* დრონის ფოტო (დამატებულია sizes პარამეტრი) */}
+                {/* დრონის ფოტო - გასწორებული src */}
                 <Image
-                  src="/hero-drone.jpg"
+                  src="/publichero-drone.jpg"
                   alt="DataFly Precision Drone Mapping"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -144,9 +144,9 @@ export default function Hero() {
                   }}
                 />
 
-                {/* ანიმირებული ლაზერი */}
+                {/* ანიმირებული ლაზერი - ოდნავ გაძლიერებული ნათებით */}
                 {!shouldReduceMotion && (
-                  <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-agro-green to-transparent shadow-[0_0_15px_#10B981] animate-[scan_4s_ease-in-out_infinite]" />
+                  <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-agro-green to-transparent shadow-[0_0_20px_#10B981] animate-[scan_4s_ease-in-out_infinite]" />
                 )}
 
                 {/* ბეჯები */}
