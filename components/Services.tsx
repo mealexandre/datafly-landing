@@ -16,24 +16,24 @@ const SERVICES: Service[] = [
     icon: Map,
     title: "Aerial Mapping & Topographic Surveys",
     description:
-      "High-precision orthomosaics, elevation models, and GIS-ready site survey data.",
-    tags: ["GIS Ready", "Orthomosaics", "CAD Compatible"],
+      "Detailed aerial maps and elevation models for site planning, land development, and engineering work.",
+    tags: ["Aerial Maps", "Elevation Models", "CAD & GIS"],
     accentColor: "blue",
   },
   {
     icon: Box,
-    title: "3D Digital Twins & Asset Inspection",
+    title: "3D Models & Asset Inspection",
     description:
-      "Photogrammetry 3D modeling for infrastructure, progress monitoring, and asset tracking.",
-    tags: ["3D Modeling", "Photogrammetry", "Asset Tracking"],
+      "3D models and inspection imagery to document infrastructure, map assets, and monitor on-site changes.",
+    tags: ["3D Modeling", "Inspection Imagery", "Asset Mapping"],
     accentColor: "blue",
   },
   {
     icon: Sprout,
-    title: "Agricultural & Land Insights",
+    title: "Agricultural Mapping & Crop Analysis",
     description:
-      "Multispectral index maps (NDVI), crop health monitoring, and boundary analytics.",
-    tags: ["NDVI Index", "Crop Health", "Boundary Mapping"],
+      "Multispectral imagery, NDVI maps, and crop analysis to assess crop condition and identify areas for closer inspection.",
+    tags: ["Multispectral Imagery", "NDVI Maps", "Crop Analysis"],
     accentColor: "green",
   },
 ];
@@ -66,16 +66,19 @@ export default function Services() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
           className="max-w-2xl"
         >
+          {/* Section eyebrow */}
           <span className="inline-block rounded-full border border-tech-blue/20 bg-tech-blue/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-tech-blue">
-            Our Capabilities
+            Our Services
           </span>
+          
+          {/* Section heading */}
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-text-main sm:text-4xl">
-            One flight, every dataset your project needs
+            Maps, Models and Agricultural Data
           </h2>
+          
+          {/* Section introduction */}
           <p className="mt-4 text-lg leading-relaxed text-text-muted">
-            From topographic surveys to crop health maps, DataFly turns a
-            single drone flight into deliverables your engineers, planners,
-            and agronomists already work with.
+            We plan each flight around your site and the information you need, then process the data into maps, models, and analysis for your project.
           </p>
         </motion.div>
 

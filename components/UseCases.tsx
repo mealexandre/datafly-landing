@@ -15,28 +15,28 @@ const USE_CASES: UseCase[] = [
     icon: HardHat,
     title: "Construction & Infrastructure",
     description:
-      "Track site progress, measure earthwork volumes, and audit structural assets with accurate photogrammetry.",
+      "Record site conditions, monitor construction progress, and inspect infrastructure using aerial imagery and 3D models.",
     accentColor: "blue",
   },
   {
     icon: Tractor,
-    title: "Precision Farming & Agribusiness",
+    title: "Agriculture & Agribusiness",
     description:
-      "Monitor crop health using NDVI multispectral indexing, detect irrigation stress, and streamline boundary analytics.",
+      "Assess crop condition with multispectral imagery and NDVI analysis, and pinpoint areas to check in the field.",
     accentColor: "green",
   },
   {
     icon: Building2,
     title: "Surveying & Land Development",
     description:
-      "Generate CAD/GIS-ready 3D elevation models and high-resolution orthomosaics for master planning.",
+      "Use topographic surveys, elevation models, and detailed aerial maps to assess land and support site planning.",
     accentColor: "blue",
   },
   {
     icon: Zap,
     title: "Energy & Utility Inspection",
     description:
-      "Conduct hazard-free inspections of power corridors, solar arrays, and high-value industrial infrastructure.",
+      "Capture visual inspection imagery of energy and utility infrastructure to document asset conditions and help plan follow-up work.",
     accentColor: "green",
   },
 ];
@@ -70,14 +70,13 @@ export default function UseCases() {
           className="max-w-2xl"
         >
           <span className="inline-block rounded-full border border-agro-green/20 bg-agro-green/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-agro-green">
-            Real-World Impact
+            Use Cases
           </span>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-text-main sm:text-4xl">
-            Built for the teams already on site
+            Data for Your Site and Your Work
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-text-muted">
-            Whatever ground your project covers, DataFly adapts the same
-            flight into the specific dataset each industry actually needs.
+            From construction sites and farmland to utility networks, our mapping and inspection services help teams understand on-the-ground conditions and plan next steps.
           </p>
         </motion.div>
 
