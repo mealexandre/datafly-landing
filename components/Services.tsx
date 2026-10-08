@@ -1,10 +1,11 @@
 "use client";
 
-import { Map, Box, Sprout, type LucideIcon } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
 
 type Service = {
-  icon: LucideIcon;
+  imageSrc: string;
+  imageAlt: string;
   title: string;
   description: string;
   tags: string[];
@@ -13,7 +14,8 @@ type Service = {
 
 const SERVICES: Service[] = [
   {
-    icon: Map,
+    imageSrc: "/service-mapping.jpg",
+    imageAlt: "Aerial Mapping & Topographic Surveys",
     title: "Aerial Mapping & Topographic Surveys",
     description:
       "Detailed aerial maps and elevation models for site planning, land development, and engineering work.",
@@ -21,7 +23,8 @@ const SERVICES: Service[] = [
     accentColor: "blue",
   },
   {
-    icon: Box,
+    imageSrc: "/service-3d.jpg",
+    imageAlt: "3D Models & Asset Inspection",
     title: "3D Models & Asset Inspection",
     description:
       "3D models and inspection imagery to document infrastructure, map assets, and monitor on-site changes.",
@@ -29,7 +32,8 @@ const SERVICES: Service[] = [
     accentColor: "blue",
   },
   {
-    icon: Sprout,
+    imageSrc: "/service-agri.jpg",
+    imageAlt: "Agricultural Mapping & Crop Analysis",
     title: "Agricultural Mapping & Crop Analysis",
     description:
       "Multispectral imagery, NDVI maps, and crop analysis to assess crop condition and identify areas for closer inspection.",
@@ -90,32 +94,37 @@ export default function Services() {
           viewport={{ once: true, margin: "-100px" }}
           className="mt-12 grid gap-6 md:grid-cols-3"
         >
-          {SERVICES.map(({ icon: Icon, title, description, tags, accentColor }) => {
+          {SERVICES.map(({ imageSrc, imageAlt, title, description, tags, accentColor }) => {
             const isBlue = accentColor === "blue";
 
             return (
               <motion.div
                 key={title}
                 variants={cardVariants}
-                className="group relative rounded-2xl border border-slate-200/80 bg-white/80 p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300"
+                className="group relative flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white/80 p-6 sm:p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 overflow-hidden"
               >
-                <div
-                  className={`inline-flex rounded-xl p-3.5 ${
-                    isBlue
-                      ? "bg-tech-blue/10 text-tech-blue"
-                      : "bg-agro-green/10 text-agro-green"
-                  }`}
-                >
-                  <Icon className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
+                {/* Image Container (ავტომატური დაკროპვა - object-cover) */}
+                <div className="relative mb-6 h-48 w-full shrink-0 overflow-hidden rounded-xl">
+                  <Image
+                    src={imageSrc}
+                    alt={imageAlt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-text-main">
-                  {title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
-                  {description}
-                </p>
+                {/* Content Container (flex-grow ტექსტს სწორად ანაწილებს) */}
+                <div className="flex flex-grow flex-col">
+                  <h3 className="text-xl font-bold text-text-main">
+                    {title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                    {description}
+                  </p>
+                </div>
 
+                {/* Tags (flex-grow-ის დახმარებით ყოველთვის ბოლოშია) */}
                 <div className="mt-6 flex flex-wrap gap-2">
                   {tags.map((tag) => (
                     <span
