@@ -10,7 +10,7 @@ type Service = {
   description: string;
   tags: string[];
   accentColor: "blue" | "green";
-  objectPosition?: string; // ფოტოს ფოკუსის დასარეგულირებლად
+  objectPosition?: string;
 };
 
 const SERVICES: Service[] = [
@@ -42,7 +42,7 @@ const SERVICES: Service[] = [
       "Multispectral imagery, NDVI maps, and crop analysis to assess crop condition and identify areas for closer inspection.",
     tags: ["Multispectral Imagery", "NDVI Maps", "Crop Analysis"],
     accentColor: "green",
-    objectPosition: "object-bottom", // ფოკუსი გადმოვიდა ქვემოთ, ეკრანზე
+    objectPosition: "object-[50%_35%]", // ცენტრალურ/ეკრანის ნაწილზე ფოკუსირება
   },
 ];
 
@@ -74,17 +74,14 @@ export default function Services() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
           className="max-w-2xl"
         >
-          {/* Section eyebrow */}
           <span className="inline-block rounded-full border border-tech-blue/20 bg-tech-blue/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-tech-blue">
             Our Services
           </span>
           
-          {/* Section heading */}
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-text-main sm:text-4xl">
             Maps, Models and Agricultural Data
           </h2>
           
-          {/* Section introduction */}
           <p className="mt-4 text-lg leading-relaxed text-text-muted">
             We plan each flight around your site and the information you need, then process the data into maps, models, and analysis for your project.
           </p>
@@ -105,10 +102,10 @@ export default function Services() {
               <motion.div
                 key={title}
                 variants={cardVariants}
-                className="group relative flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white/80 p-6 sm:p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 overflow-hidden"
+                className="group relative flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white/80 p-5 sm:p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 overflow-hidden"
               >
                 {/* Image Container */}
-                <div className="relative mb-6 h-48 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                <div className="relative mb-5 h-48 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100">
                   <Image
                     src={imageSrc}
                     alt={imageAlt}
@@ -118,22 +115,25 @@ export default function Services() {
                   />
                 </div>
 
-                {/* სათაური: ფიქსირებული მინიმალური სიმაღლე 2 ხაზისთვის */}
-                <h3 className="text-xl font-bold text-text-main min-h-[56px] flex items-start pr-2">
-                  {title}
-                </h3>
+                {/* Content Container */}
+                <div className="flex flex-grow flex-col">
+                  {/* სათაური: ეტევა 1 ხაზზე */}
+                  <h3 className="text-lg font-bold text-text-main sm:text-xl tracking-tight">
+                    {title}
+                  </h3>
 
-                {/* აღწერა: ფიქსირებული მინიმალური სიმაღლე 3 ხაზისთვის */}
-                <p className="mt-3 text-sm leading-relaxed text-text-muted min-h-[72px]">
-                  {description}
-                </p>
+                  {/* აღწერა */}
+                  <p className="mt-2.5 text-sm leading-relaxed text-text-muted">
+                    {description}
+                  </p>
+                </div>
 
-                {/* ტეგები: აღარ აქვს mt-auto, ამიტომ პირდაპირ ტექსტის ქვემოთ დაჯდება ლამაზად */}
-                <div className="mt-2 flex flex-wrap gap-2">
+                {/* ტეგები: ჩაჯდა 1-2 ხაზზე ჩამოჭრის გარეშე */}
+                <div className="mt-5 flex flex-wrap gap-1.5 pt-2">
                   {tags.map((tag) => (
                     <span
                       key={tag}
-                      className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors duration-200 ${
+                      className={`rounded-full border px-2.5 py-1 text-xs font-semibold transition-colors duration-200 ${
                         isBlue
                           ? "border-slate-200 bg-slate-50 text-text-muted group-hover:border-tech-blue/30 group-hover:text-tech-blue"
                           : "border-slate-200 bg-slate-50 text-text-muted group-hover:border-agro-green/30 group-hover:text-agro-green"
