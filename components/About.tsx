@@ -6,30 +6,30 @@ import { motion, type Variants } from "framer-motion";
 const HIGHLIGHTS = [
   {
     icon: Target,
-    title: "Survey-Grade Accuracy",
+    title: "Scoped to Your Project",
     description:
-      "We deliver high-density point clouds, orthomosaics, and elevation models directly compatible with CAD and GIS software.",
+      "Before we fly, we agree on the area to cover, the level of detail, and the outputs your team needs.",
     color: "blue",
   },
   {
     icon: CheckCircle2,
-    title: "Actionable Insights",
+    title: "Agricultural Analysis",
     description:
-      "Beyond raw imagery, our NDVI multispectral analytics provide clear guidance on crop health, soil variation, and land boundaries.",
+      "We process multispectral imagery into NDVI maps and crop analysis to help you assess variation across your fields.",
     color: "green",
   },
   {
     icon: ShieldCheck,
-    title: "Reliable Field Operations",
+    title: "Field Operations",
     description:
-      "Engineered for speed and safety, turning complex flight missions into structured data without project delays.",
+      "We plan flights around site access, weather, and project requirements, then process the captured data for delivery.",
     color: "blue",
   },
   {
     icon: Globe2,
     title: "Backed by December32",
     description:
-      "Built within December32 LLC's venture studio, combining international commercial strategy with deep technical expertise.",
+      "Developed within the December32 Venture Studio, combining drone expertise with commercial and operational support.",
     color: "green",
   },
 ];
@@ -68,7 +68,7 @@ export default function About() {
               About DataFly
             </span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-text-main sm:text-4xl lg:text-5xl">
-              Turning aerial data into practical commercial decisions
+              Drone Mapping and Analysis from Georgia
             </h2>
           </motion.div>
 
@@ -79,7 +79,7 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
             className="lg:col-span-5 text-base sm:text-lg leading-relaxed text-text-muted"
           >
-            DataFly bridges the gap between hardware capabilities and real-world business needs. We convert complex drone flights into clear, structured datasets for engineering, agriculture, and land development.
+            DataFly is a December32 venture providing drone mapping, agricultural analysis, and infrastructure inspection. Based in Georgia, we handle data capture and processing for teams working on land, crops, and built assets.
           </motion.p>
         </div>
 
@@ -133,13 +133,13 @@ export default function About() {
         >
           <div>
             <div className="text-xs font-mono font-semibold uppercase tracking-wider text-tech-blue">
-              Autonomous Technology Venture
+              A December32 Venture
             </div>
             <h4 className="text-lg font-bold text-text-main mt-1">
-              Part of December32 Venture Studio
+              Part of the December32 Venture Studio
             </h4>
             <p className="text-sm text-text-muted mt-1 max-w-2xl">
-              DataFly is a dedicated venture studio project focused on drone mapping and agricultural intelligence, founded in Tbilisi, Georgia, and operating internationally.
+              Based in Tbilisi, DataFly serves projects across Georgia. For work outside Georgia, contact us to discuss location, scope, and delivery.
             </p>
           </div>
 
