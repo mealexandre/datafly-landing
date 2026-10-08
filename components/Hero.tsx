@@ -35,7 +35,7 @@ export default function Hero() {
           {/* მარცხენა მხარე: ტექსტი */}
           <div className="lg:col-span-6">
             
-            {/* ბეჯი - Hero eyebrow */}
+            {/* ბეჯი */}
             <motion.div
               initial="hidden"
               animate="show"
@@ -47,7 +47,7 @@ export default function Hero() {
               Drone Data for Land and Infrastructure
             </motion.div>
 
-            {/* სათაური - Hero heading */}
+            {/* სათაური */}
             <motion.h1
               initial="hidden"
               animate="show"
@@ -60,7 +60,7 @@ export default function Hero() {
               <span className="text-agro-green">3D Models</span>
             </motion.h1>
 
-            {/* აღწერა - Hero paragraph */}
+            {/* აღწერა */}
             <motion.p
               initial="hidden"
               animate="show"
@@ -94,7 +94,7 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            {/* შესაძლებლობების სია - Three service labels */}
+            {/* შესაძლებლობების სია */}
             <motion.ul
               initial="hidden"
               animate="show"
@@ -104,4 +104,74 @@ export default function Hero() {
             >
               {CAPABILITIES.map(({ icon: Icon, label }) => (
                 <li key={label} className="flex items-center gap-2 text-sm text-text-muted font-medium">
-                  <Icon className="h-4 w-4 shrink-0 text-tech-blue" strokeWidth={2} aria-hidden
+                  <Icon className="h-4 w-4 shrink-0 text-tech-blue" strokeWidth={2} aria-hidden="true" />
+                  <span>{label}</span>
+                </li>
+              ))}
+            </motion.ul>
+          </div>
+
+          {/* მარჯვენა მხარე: ვიზუალური ფოტო */}
+          <motion.div
+            initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+            className="lg:col-span-6"
+          >
+            <div className="relative mx-auto w-full max-w-lg lg:max-w-none rounded-2xl border-2 border-slate-200 bg-white p-2 shadow-2xl overflow-hidden">
+              <div className="relative h-[400px] sm:h-[480px] w-full rounded-xl overflow-hidden bg-slate-900 group">
+                
+                <Image
+                  src="/publichero-drone.jpg"
+                  alt="DataFly Precision Drone Mapping"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover opacity-95 transition-transform duration-700 group-hover:scale-105"
+                  priority
+                />
+
+                <div 
+                  className="absolute inset-0 opacity-20 pointer-events-none"
+                  style={{
+                    backgroundImage: `linear-gradient(to right, rgba(37, 99, 235, 0.5) 1px, transparent 1px),
+                                      linear-gradient(to bottom, rgba(37, 99, 235, 0.5) 1px, transparent 1px)`,
+                    backgroundSize: '32px 32px'
+                  }}
+                />
+
+                {!shouldReduceMotion && (
+                  <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-agro-green to-transparent shadow-[0_0_20px_#10B981] animate-[scan_4s_ease-in-out_infinite]" />
+                )}
+
+                <div className="absolute top-4 left-4 rounded-lg bg-slate-900/80 backdrop-blur-md px-3.5 py-2 border border-tech-blue/30 text-xs font-semibold text-white shadow-lg flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                     <span className="h-2 w-2 rounded-full bg-tech-blue animate-ping" />
+                     3D Point Cloud
+                  </div>
+                   <div className="text-[10px] text-slate-300">Multispectral Mapping</div>
+                </div>
+
+                <div className="absolute bottom-4 right-4 rounded-xl bg-slate-900/85 backdrop-blur-md px-4 py-2.5 border border-agro-green/40 text-xs text-white shadow-xl">
+                  <div className="text-[10px] text-slate-300 font-mono uppercase tracking-wider">Crop Health Index</div>
+                  <div className="text-agro-green font-bold text-sm flex items-center gap-1.5 mt-0.5">
+                    <span className="h-2 w-2 rounded-full bg-agro-green" />
+                    NDVI Crop Analysis
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes scan {
+          0%, 100% { top: 0%; opacity: 0.8; }
+          50% { top: 98%; opacity: 1; }
+        }
+      `}</style>
+    </section>
+  );
+}
