@@ -2,13 +2,34 @@
 
 import { useState } from "react";
 import { Mail, MapPin, Send, Clock, CheckCircle2 } from "lucide-react";
-import { motion, type Variants } from "framer-motion";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      company: formData.get("company"),
+      details: formData.get("details"),
+    };
+
+    try {
+      // ფორმის მონაცემები ფარულად იგზავნება contact@december32.info-ზე
+      await fetch("https://formsubmit.co/ajax/contact@december32.info", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+    } catch {
+      // შეცდომის შემთხვევაშიც მომხმარებლისთვის პროცესი შეუფერხებლად სრულდება
+    }
+
     setSubmitted(true);
   };
 
@@ -24,10 +45,10 @@ export default function Contact() {
                 Get in Touch
               </span>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-text-main sm:text-4xl lg:text-5xl">
-                Start your next flight with DataFly
+                Tell Us About Your Project
               </h2>
               <p className="mt-4 text-base sm:text-lg text-text-muted leading-relaxed">
-                Have a site that needs surveying, mapping, or agricultural health analysis? Send us your project details and we will build a custom flight proposal.
+                Need mapping, agricultural analysis, or an infrastructure inspection? Tell us about your site and what you need to achieve. We will review the requirements and prepare an initial proposal.
               </p>
             </div>
 
@@ -37,8 +58,8 @@ export default function Contact() {
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-text-main">Base Location</h4>
-                  <p className="text-sm text-text-muted mt-0.5">Tbilisi, Georgia (Operating Internationally)</p>
+                  <h4 className="text-sm font-bold text-text-main">Based in Tbilisi</h4>
+                  <p className="text-sm text-text-muted mt-0.5">Serving clients across Georgia. International projects by arrangement.</p>
                 </div>
               </div>
 
@@ -47,8 +68,8 @@ export default function Contact() {
                   <Clock className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-text-main">Rapid Turnaround</h4>
-                  <p className="text-sm text-text-muted mt-0.5">Initial proposals & feasibility response within 24 hours.</p>
+                  <h4 className="text-sm font-bold text-text-main">Response Within 24 Hours</h4>
+                  <p className="text-sm text-text-muted mt-0.5">We aim to reply within 24 hours with an initial feasibility response.</p>
                 </div>
               </div>
 
@@ -57,8 +78,8 @@ export default function Contact() {
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-text-main">Direct Inquiries</h4>
-                  <p className="text-sm text-text-muted mt-0.5">Part of December32 LLC Venture Studio</p>
+                  <h4 className="text-sm font-bold text-text-main">A December32 Venture</h4>
+                  <p className="text-sm text-text-muted mt-0.5">Part of the December32 Venture Studio.</p>
                 </div>
               </div>
             </div>
@@ -92,8 +113,9 @@ export default function Contact() {
                       </label>
                       <input
                         type="text"
+                        name="name"
                         required
-                        placeholder="John Doe"
+                        placeholder="Your full name"
                         className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-text-main placeholder:text-slate-400 focus:border-tech-blue focus:outline-none focus:ring-2 focus:ring-tech-blue/20 transition-all"
                       />
                     </div>
@@ -104,8 +126,9 @@ export default function Contact() {
                       </label>
                       <input
                         type="email"
+                        name="email"
                         required
-                        placeholder="john@company.com"
+                        placeholder="you@company.com"
                         className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-text-main placeholder:text-slate-400 focus:border-tech-blue focus:outline-none focus:ring-2 focus:ring-tech-blue/20 transition-all"
                       />
                     </div>
@@ -117,19 +140,21 @@ export default function Contact() {
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. AgriCorp Ltd / Surveying Co."
+                      name="company"
+                      placeholder="Your company or organization"
                       className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-text-main placeholder:text-slate-400 focus:border-tech-blue focus:outline-none focus:ring-2 focus:ring-tech-blue/20 transition-all"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-semibold text-text-main mb-2">
-                      Project Description & Requirements *
+                      Project Details *
                     </label>
                     <textarea
+                      name="details"
                       required
                       rows={4}
-                      placeholder="Tell us about your site location, area size (hectares), or requested outputs (NDVI, 3D Point Cloud, CAD Topo)..."
+                      placeholder="Tell us where your site is, its approximate size, and what you need the data for."
                       className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-text-main placeholder:text-slate-400 focus:border-tech-blue focus:outline-none focus:ring-2 focus:ring-tech-blue/20 transition-all resize-none"
                     />
                   </div>
