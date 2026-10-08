@@ -6,8 +6,8 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200/80 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
         
-        {/* მარცხნივ: ლოგო */}
-        <Link href="/" className="flex items-center hover:opacity-90 transition-opacity shrink-0">
+        {/* მარცხნივ: ლოგო (href="#" უზრუნველყოფს გვერდის თავში ატანას) */}
+        <Link href="#" className="flex items-center hover:opacity-90 transition-opacity shrink-0">
           <Image
             src="/logo.png"
             alt="DataFly Logo"
@@ -51,7 +51,7 @@ export default function Navbar() {
             href="#contact"
             className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold shadow-sm hover:shadow transition-all duration-200 shrink-0"
           >
-            Get in Touch
+            Discuss Your Project
           </Link>
         </div>
 
