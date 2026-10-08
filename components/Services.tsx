@@ -10,6 +10,7 @@ type Service = {
   description: string;
   tags: string[];
   accentColor: "blue" | "green";
+  objectPosition?: string; // ფოტოს ფოკუსის დასარეგულირებლად
 };
 
 const SERVICES: Service[] = [
@@ -21,6 +22,7 @@ const SERVICES: Service[] = [
       "Detailed aerial maps and elevation models for site planning, land development, and engineering work.",
     tags: ["Aerial Maps", "Elevation Models", "CAD & GIS"],
     accentColor: "blue",
+    objectPosition: "object-center",
   },
   {
     imageSrc: "/service-3d.jpg",
@@ -30,6 +32,7 @@ const SERVICES: Service[] = [
       "3D models and inspection imagery to document infrastructure, map assets, and monitor on-site changes.",
     tags: ["3D Modeling", "Inspection Imagery", "Asset Mapping"],
     accentColor: "blue",
+    objectPosition: "object-center",
   },
   {
     imageSrc: "/service-agri.jpg",
@@ -39,6 +42,7 @@ const SERVICES: Service[] = [
       "Multispectral imagery, NDVI maps, and crop analysis to assess crop condition and identify areas for closer inspection.",
     tags: ["Multispectral Imagery", "NDVI Maps", "Crop Analysis"],
     accentColor: "green",
+    objectPosition: "object-top", // ფოკუსი გადატანილია ზედა ნაწილზე
   },
 ];
 
@@ -92,9 +96,9 @@ export default function Services() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="mt-12 grid gap-6 md:grid-cols-3"
+          className="mt-12 grid gap-6 md:grid-cols-3 items-stretch"
         >
-          {SERVICES.map(({ imageSrc, imageAlt, title, description, tags, accentColor }) => {
+          {SERVICES.map(({ imageSrc, imageAlt, title, description, tags, accentColor, objectPosition }) => {
             const isBlue = accentColor === "blue";
 
             return (
@@ -103,29 +107,29 @@ export default function Services() {
                 variants={cardVariants}
                 className="group relative flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white/80 p-6 sm:p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 overflow-hidden"
               >
-                {/* Image Container (ავტომატური დაკროპვა - object-cover) */}
-                <div className="relative mb-6 h-48 w-full shrink-0 overflow-hidden rounded-xl">
+                {/* Image Container (ფიქსირებული სიმაღლე) */}
+                <div className="relative mb-6 h-48 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100">
                   <Image
                     src={imageSrc}
                     alt={imageAlt}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className={`object-cover ${objectPosition || "object-center"} transition-transform duration-500 group-hover:scale-105`}
                   />
                 </div>
 
-                {/* Content Container (flex-grow ტექსტს სწორად ანაწილებს) */}
-                <div className="flex flex-grow flex-col">
-                  <h3 className="text-xl font-bold text-text-main">
-                    {title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-text-muted">
-                    {description}
-                  </p>
-                </div>
+                {/* სათაური: min-h აიძულებს 1-ხაზიან სათაურსაც დაიკავოს 2 ხაზის ადგილი */}
+                <h3 className="text-xl font-bold text-text-main min-h-[56px] flex items-start">
+                  {title}
+                </h3>
 
-                {/* Tags (flex-grow-ის დახმარებით ყოველთვის ბოლოშია) */}
-                <div className="mt-6 flex flex-wrap gap-2">
+                {/* აღწერა: min-h უზრუნველყოფს ტექსტების სიმაღლის გათანაბრებას */}
+                <p className="mt-3 text-sm leading-relaxed text-text-muted min-h-[60px]">
+                  {description}
+                </p>
+
+                {/* ტეგები: mt-auto აჭედებს ბლოკს ბარათის ბოლოში */}
+                <div className="mt-auto pt-6 flex flex-wrap gap-2">
                   {tags.map((tag) => (
                     <span
                       key={tag}
