@@ -42,7 +42,7 @@ const SERVICES: Service[] = [
       "Multispectral imagery, NDVI maps, and crop analysis to assess crop condition and identify areas for closer inspection.",
     tags: ["Multispectral Imagery", "NDVI Maps", "Crop Analysis"],
     accentColor: "green",
-    objectPosition: "object-top", // ფოკუსი გადატანილია ზედა ნაწილზე
+    objectPosition: "object-bottom", // ფოკუსი გადმოვიდა ქვემოთ, ეკრანზე
   },
 ];
 
@@ -107,7 +107,7 @@ export default function Services() {
                 variants={cardVariants}
                 className="group relative flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white/80 p-6 sm:p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 overflow-hidden"
               >
-                {/* Image Container (ფიქსირებული სიმაღლე) */}
+                {/* Image Container */}
                 <div className="relative mb-6 h-48 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100">
                   <Image
                     src={imageSrc}
@@ -118,18 +118,18 @@ export default function Services() {
                   />
                 </div>
 
-                {/* სათაური: min-h აიძულებს 1-ხაზიან სათაურსაც დაიკავოს 2 ხაზის ადგილი */}
-                <h3 className="text-xl font-bold text-text-main min-h-[56px] flex items-start">
+                {/* სათაური: ფიქსირებული მინიმალური სიმაღლე 2 ხაზისთვის */}
+                <h3 className="text-xl font-bold text-text-main min-h-[56px] flex items-start pr-2">
                   {title}
                 </h3>
 
-                {/* აღწერა: min-h უზრუნველყოფს ტექსტების სიმაღლის გათანაბრებას */}
-                <p className="mt-3 text-sm leading-relaxed text-text-muted min-h-[60px]">
+                {/* აღწერა: ფიქსირებული მინიმალური სიმაღლე 3 ხაზისთვის */}
+                <p className="mt-3 text-sm leading-relaxed text-text-muted min-h-[72px]">
                   {description}
                 </p>
 
-                {/* ტეგები: mt-auto აჭედებს ბლოკს ბარათის ბოლოში */}
-                <div className="mt-auto pt-6 flex flex-wrap gap-2">
+                {/* ტეგები: აღარ აქვს mt-auto, ამიტომ პირდაპირ ტექსტის ქვემოთ დაჯდება ლამაზად */}
+                <div className="mt-2 flex flex-wrap gap-2">
                   {tags.map((tag) => (
                     <span
                       key={tag}
