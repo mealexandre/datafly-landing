@@ -1,10 +1,10 @@
 "use client";
 
-import { Plane, Cpu, ShieldAlert, type LucideIcon } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
 
 type Drone = {
-  icon: LucideIcon;
+  imageSrc: string;
   name: string;
   role: string;
   description: string;
@@ -14,29 +14,29 @@ type Drone = {
 
 const DRONES: Drone[] = [
   {
-    icon: ShieldAlert,
+    imageSrc: "/mini.jpg", // დარწმუნდი რომ public ფოლდერში ეს ფაილი გაქვს
     name: "DJI Mini 5 Pro",
-    role: "Compact & Agile Inspection",
+    role: "Aerial Imagery & Visual Inspection",
     description:
-      "Compact, safe, and fast—ideal for inspecting hard-to-reach areas and quick site overviews.",
+      "A compact drone for aerial photography, site overviews, and visual inspection imagery.",
     tags: ["Compact", "Fast Deployment", "Visual Inspection"],
     accentColor: "blue",
   },
   {
-    icon: Cpu,
+    imageSrc: "/matrice.jpg", // დარწმუნდი რომ public ფოლდერში ეს ფაილი გაქვს
     name: "DJI Matrice 4E",
-    role: "Heavy-Duty Surveying",
+    role: "Surveying & Mapping",
     description:
-      "A heavy-duty professional drone designed for scanning large areas, precise topography, and infrastructure.",
+      "A survey and mapping drone with RTK positioning and a mechanical-shutter camera for detailed maps and 3D models.",
     tags: ["RTK Precision", "Large Scale", "Topography"],
     accentColor: "blue",
   },
   {
-    icon: Plane,
+    imageSrc: "/mavic.jpg", // დარწმუნდი რომ public ფოლდერში ეს ფაილი გაქვს
     name: "DJI Mavic 3M",
     role: "Multispectral Agriculture",
     description:
-      "The best choice for agriculture, equipped with a multispectral camera for crop health and NDVI mapping.",
+      "Captures RGB and multispectral imagery for NDVI mapping, crop analysis, and field monitoring.",
     tags: ["Multispectral", "NDVI", "Crop Health"],
     accentColor: "green",
   },
@@ -74,10 +74,10 @@ export default function Equipment() {
             Our Equipment
           </span>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-text-main sm:text-4xl">
-            Enterprise-grade drones for every mission
+            Our DJI Drone Fleet
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-text-muted">
-            We use industry-leading hardware to ensure high accuracy, safety, and reliability across all our mapping and inspection flights.
+            We select the drone and camera system to suit your site, the work required, and the data you need.
           </p>
         </motion.div>
 
@@ -89,7 +89,7 @@ export default function Equipment() {
           viewport={{ once: true, margin: "-100px" }}
           className="mt-12 grid gap-6 md:grid-cols-3"
         >
-          {DRONES.map(({ icon: Icon, name, role, description, tags, accentColor }) => {
+          {DRONES.map(({ imageSrc, name, role, description, tags, accentColor }) => {
             const isBlue = accentColor === "blue";
 
             return (
@@ -98,41 +98,45 @@ export default function Equipment() {
                 variants={cardVariants}
                 whileHover={{ scale: 1.015 }}
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                className="group relative rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md"
+                className="group relative rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md overflow-hidden flex flex-col"
               >
-                <div
-                  className={`inline-flex rounded-xl p-3.5 ${
-                    isBlue
-                      ? "bg-tech-blue/10 text-tech-blue"
-                      : "bg-agro-green/10 text-agro-green"
-                  }`}
-                >
-                  <Icon className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
+                {/* Image Section - ჩაანაცვლა აიქონები */}
+                <div className="relative h-48 w-full bg-slate-100">
+                  <Image
+                    src={imageSrc}
+                    alt={name}
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-text-main">
-                  {name}
-                </h3>
-                <div className="text-sm font-semibold text-text-muted mt-1">
-                  {role}
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
-                  {description}
-                </p>
+                {/* Content Section */}
+                <div className="p-8 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-text-main">
+                    {name}
+                  </h3>
+                  <div className="text-sm font-semibold text-text-muted mt-1">
+                    {role}
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted flex-1">
+                    {description}
+                  </p>
 
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors duration-200 ${
-                        isBlue
-                          ? "border-slate-200 bg-slate-50 text-text-muted group-hover:border-tech-blue/30 group-hover:text-tech-blue"
-                          : "border-slate-200 bg-slate-50 text-text-muted group-hover:border-agro-green/30 group-hover:text-agro-green"
-                      }`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors duration-200 ${
+                          isBlue
+                            ? "border-slate-200 bg-slate-50 text-text-muted group-hover:border-tech-blue/30 group-hover:text-tech-blue"
+                            : "border-slate-200 bg-slate-50 text-text-muted group-hover:border-agro-green/30 group-hover:text-agro-green"
+                        }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             );

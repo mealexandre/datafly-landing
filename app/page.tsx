@@ -26,7 +26,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-text-muted">
           <p>© {new Date().getFullYear()} DataFly. A December32 LLC venture. All rights reserved.</p>
           <p className="font-semibold text-text-main">
-            Precision Drone Mapping &amp; Agricultural Data
+            Drone Mapping, Agricultural Data &amp; 3D Models
           </p>
         </div>
       </footer>

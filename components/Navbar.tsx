@@ -39,9 +39,18 @@ export default function Navbar() {
             >
               About
             </Link>
+            
+            {/* აქ დაემატა Pricing ლინკი */}
+            <Link 
+              href="#pricing" 
+              className="hover:text-emerald-600 transition-colors duration-200"
+            >
+              Pricing
+            </Link>
+
             <Link 
               href="#contact" 
-              className="hover:text-emerald-600 transition-colors duration-200"
+              className="hover:text-blue-600 transition-colors duration-200"
             >
               Contact
             </Link>
