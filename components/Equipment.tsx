@@ -14,7 +14,7 @@ type Drone = {
 
 const DRONES: Drone[] = [
   {
-    imageSrc: "/mini.jpg", // დარწმუნდი რომ public ფოლდერში ეს ფაილი გაქვს
+    imageSrc: "/mini.png",
     name: "DJI Mini 5 Pro",
     role: "Aerial Imagery & Visual Inspection",
     description:
@@ -23,7 +23,7 @@ const DRONES: Drone[] = [
     accentColor: "blue",
   },
   {
-    imageSrc: "/matrice.jpg", // დარწმუნდი რომ public ფოლდერში ეს ფაილი გაქვს
+    imageSrc: "/matrice.png",
     name: "DJI Matrice 4E",
     role: "Surveying & Mapping",
     description:
@@ -32,7 +32,7 @@ const DRONES: Drone[] = [
     accentColor: "blue",
   },
   {
-    imageSrc: "/mavic.jpg", // დარწმუნდი რომ public ფოლდერში ეს ფაილი გაქვს
+    imageSrc: "/mavic.png",
     name: "DJI Mavic 3M",
     role: "Multispectral Agriculture",
     description:
@@ -100,7 +100,7 @@ export default function Equipment() {
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
                 className="group relative rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md overflow-hidden flex flex-col"
               >
-                {/* Image Section - ჩაანაცვლა აიქონები */}
+                {/* Image Section */}
                 <div className="relative h-48 w-full bg-slate-100">
                   <Image
                     src={imageSrc}
