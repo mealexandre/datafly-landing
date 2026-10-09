@@ -1,35 +1,43 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import UseCases from "@/components/UseCases";
-import Equipment from "@/components/Equipment";
-import About from "@/components/About";
-import Pricing from "@/components/Pricing";
-import Contact from "@/components/Contact";
+import type { Metadata } from "next";
+import "./globals.css";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "DataFly | Drone Mapping & Agricultural Data in Georgia",
+  description:
+    "Drone mapping, topographic surveys, crop analysis, and 3D models for land, infrastructure, and farming projects in Georgia. Discuss your project with DataFly.",
+  openGraph: {
+    title: "DataFly | Drone Mapping & Agricultural Data in Georgia",
+    description:
+      "Drone mapping, topographic surveys, crop analysis, and 3D models for land, infrastructure, and farming projects in Georgia. Discuss your project with DataFly.",
+    url: "https://datafly-landing-nq79.vercel.app",
+    siteName: "DataFly",
+    images: [
+      {
+        url: "https://datafly-landing-nq79.vercel.app/publichero-drone.jpg",
+        width: 1200,
+        height: 630,
+        alt: "DataFly Drone Mapping",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DataFly | Drone Mapping & Agricultural Data in Georgia",
+    description:
+      "Drone mapping, topographic surveys, crop analysis, and 3D models for land, infrastructure, and farming projects in Georgia. Discuss your project with DataFly.",
+    images: ["https://datafly-landing-nq79.vercel.app/publichero-drone.jpg"],
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <main className="min-h-screen flex flex-col justify-between">
-      <div>
-        <Navbar />
-        <Hero />
-        <Services />
-        <UseCases />
-        <Equipment />
-        <About />
-        <Pricing />
-        <Contact />
-      </div>
-
-      {/* Footer სექცია */}
-      <footer className="border-t border-slate-200/80 bg-white/80 py-8 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-text-muted">
-          <p>© {new Date().getFullYear()} DataFly. A December32 LLC venture. All rights reserved.</p>
-          <p className="font-semibold text-text-main">
-            Drone Mapping, Agricultural Data &amp; 3D Models
-          </p>
-        </div>
-      </footer>
-    </main>
+    <html lang="en">
+      <body className="bg-[#121212] text-white antialiased">{children}</body>
+    </html>
   );
 }
