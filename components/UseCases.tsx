@@ -10,7 +10,7 @@ type Drone = {
   description: string;
   tags: string[];
   accentColor: "blue" | "green";
-  customImageClass?: string; // ვამატებთ ველს კონკრეტული სურათის პოზიციის/ზომისთვის
+  imageClass: string; // ვამატებთ ზუსტი სტილის კონტროლისთვის
 };
 
 const DRONES: Drone[] = [
@@ -22,7 +22,8 @@ const DRONES: Drone[] = [
       "A compact drone for aerial photography, site overviews, and visual inspection imagery.",
     tags: ["Compact", "Fast Deployment", "Visual Inspection"],
     accentColor: "blue",
-    customImageClass: "translate-y-4 scale-90", // ჩამოწევს ქვემოთ და *ოდნავ* (10%-ით) დააპატარავებს
+    // object-contain იცავს ჩამოჭრისგან, scale-95 ოდნავ (5%-ით) აპატარავებს, translate-y-2 დაბლა სწევს
+    imageClass: "object-contain object-center scale-95 translate-y-2", 
   },
   {
     imageSrc: "/matrice.png",
@@ -32,6 +33,7 @@ const DRONES: Drone[] = [
       "A survey and mapping drone with RTK positioning and a mechanical-shutter camera for detailed maps and 3D models.",
     tags: ["RTK Precision", "Large Scale", "Topography"],
     accentColor: "blue",
+    imageClass: "object-cover object-center", // ორიგინალი სტილი დანარჩენებისთვის
   },
   {
     imageSrc: "/mavic.png",
@@ -41,6 +43,7 @@ const DRONES: Drone[] = [
       "Captures RGB and multispectral imagery for NDVI mapping, crop analysis, and field monitoring.",
     tags: ["Multispectral", "NDVI", "Crop Health"],
     accentColor: "green",
+    imageClass: "object-cover object-center", // ორიგინალი სტილი დანარჩენებისთვის
   },
 ];
 
@@ -91,7 +94,7 @@ export default function Equipment() {
           viewport={{ once: true, margin: "-100px" }}
           className="mt-12 grid gap-6 md:grid-cols-3"
         >
-          {DRONES.map(({ imageSrc, name, role, description, tags, accentColor, customImageClass }) => {
+          {DRONES.map(({ imageSrc, name, role, description, tags, accentColor, imageClass }) => {
             const isBlue = accentColor === "blue";
 
             return (
@@ -108,7 +111,7 @@ export default function Equipment() {
                     src={imageSrc}
                     alt={name}
                     fill
-                    className={`object-cover object-center transition-transform duration-300 ${customImageClass || ""}`}
+                    className={imageClass} // აქ უკვე თითოეულს თავისი სტილი მიენიჭება
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
