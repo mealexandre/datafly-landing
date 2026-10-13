@@ -10,7 +10,7 @@ type Drone = {
   description: string;
   tags: string[];
   accentColor: "blue" | "green";
-  customImageClass?: string; // ვამატებთ ველს კონკრეტული სურათის სტილიზაციისთვის
+  customImageClass?: string; // ვამატებთ ველს კონკრეტული სურათის პოზიციისთვის
 };
 
 const DRONES: Drone[] = [
@@ -22,7 +22,7 @@ const DRONES: Drone[] = [
       "A compact drone for aerial photography, site overviews, and visual inspection imagery.",
     tags: ["Compact", "Fast Deployment", "Visual Inspection"],
     accentColor: "blue",
-    customImageClass: "mt-6", // ეს ჩამოწევს მხოლოდ პირველ დრონს დაბლა, ზომის შეუცვლელად
+    customImageClass: "translate-y-4", // ეს სურათს ოდნავ ქვემოთ ჩამოწევს, ზომის შეუცვლელად
   },
   {
     imageSrc: "/matrice.png",
@@ -32,7 +32,6 @@ const DRONES: Drone[] = [
       "A survey and mapping drone with RTK positioning and a mechanical-shutter camera for detailed maps and 3D models.",
     tags: ["RTK Precision", "Large Scale", "Topography"],
     accentColor: "blue",
-    customImageClass: "", // სტანდარტული ზომა და პოზიცია
   },
   {
     imageSrc: "/mavic.png",
@@ -42,7 +41,6 @@ const DRONES: Drone[] = [
       "Captures RGB and multispectral imagery for NDVI mapping, crop analysis, and field monitoring.",
     tags: ["Multispectral", "NDVI", "Crop Health"],
     accentColor: "green",
-    customImageClass: "", // სტანდარტული ზომა და პოზიცია
   },
 ];
 
@@ -105,16 +103,14 @@ export default function Equipment() {
                 className="group relative rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md overflow-hidden flex flex-col"
               >
                 {/* Image Section */}
-                <div className="relative h-48 w-full bg-slate-100 flex items-center justify-center">
-                  <div className={`relative w-[85%] h-[85%] ${customImageClass || ""}`}>
-                     <Image
-                      src={imageSrc}
-                      alt={name}
-                      fill
-                      className="object-contain object-center" 
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </div>
+                <div className="relative h-48 w-full bg-slate-100">
+                  <Image
+                    src={imageSrc}
+                    alt={name}
+                    fill
+                    className={`object-cover object-center ${customImageClass || ""}`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
 
                 {/* Content Section */}
