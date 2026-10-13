@@ -56,8 +56,8 @@ export default function Hero() {
               className="mt-4 text-4xl font-bold tracking-tight text-text-main sm:text-5xl lg:text-6xl leading-[1.1]"
             >
               Drone Mapping,{" "}
-              <span className="text-tech-blue">Agricultural Data</span> &amp;{" "}
-              <span className="text-agro-green">3D Models</span>
+              <span className="text-agro-green">Agricultural Data</span> &amp;{" "}
+              <span className="text-tech-blue">3D Models</span>
             </motion.h1>
 
             {/* აღწერა */}

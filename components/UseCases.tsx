@@ -59,7 +59,7 @@ const cardVariants: Variants = {
 
 export default function UseCases() {
   return (
-    <section id="use-cases" className="py-20 md:py-28">
+    <section id="use-cases" className="pt-10 pb-20 md:pt-12 md:pb-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -86,7 +86,7 @@ export default function UseCases() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="mt-12 grid gap-6 sm:grid-cols-2"
+          className="mt-10 grid gap-6 sm:grid-cols-2"
         >
           {USE_CASES.map(({ icon: Icon, title, description, accentColor }) => {
             const isBlue = accentColor === "blue";
