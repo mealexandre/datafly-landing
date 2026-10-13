@@ -10,7 +10,7 @@ type Drone = {
   description: string;
   tags: string[];
   accentColor: "blue" | "green";
-  customImageClass?: string; // ვამატებთ ველს კონკრეტული სურათის პოზიციისთვის
+  customImageClass?: string; // ვამატებთ ველს კონკრეტული სურათის პოზიციის/ზომისთვის
 };
 
 const DRONES: Drone[] = [
@@ -22,7 +22,7 @@ const DRONES: Drone[] = [
       "A compact drone for aerial photography, site overviews, and visual inspection imagery.",
     tags: ["Compact", "Fast Deployment", "Visual Inspection"],
     accentColor: "blue",
-    customImageClass: "translate-y-4", // ეს სურათს ოდნავ ქვემოთ ჩამოწევს, ზომის შეუცვლელად
+    customImageClass: "translate-y-4 scale-90", // ჩამოწევს ქვემოთ და *ოდნავ* (10%-ით) დააპატარავებს
   },
   {
     imageSrc: "/matrice.png",
@@ -103,12 +103,12 @@ export default function Equipment() {
                 className="group relative rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md overflow-hidden flex flex-col"
               >
                 {/* Image Section */}
-                <div className="relative h-48 w-full bg-slate-100">
+                <div className="relative h-48 w-full bg-slate-100 flex items-center justify-center overflow-hidden">
                   <Image
                     src={imageSrc}
                     alt={name}
                     fill
-                    className={`object-cover object-center ${customImageClass || ""}`}
+                    className={`object-cover object-center transition-transform duration-300 ${customImageClass || ""}`}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
