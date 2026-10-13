@@ -10,7 +10,7 @@ type Drone = {
   description: string;
   tags: string[];
   accentColor: "blue" | "green";
-  imagePadding?: string; // ვამატებთ ახალ ველს კონკრეტული სურათის დაშორებისთვის
+  imageClass: string; // ვამატებთ ზუსტი სტილის კონტროლისთვის
 };
 
 const DRONES: Drone[] = [
@@ -22,7 +22,8 @@ const DRONES: Drone[] = [
       "A compact drone for aerial photography, site overviews, and visual inspection imagery.",
     tags: ["Compact", "Fast Deployment", "Visual Inspection"],
     accentColor: "blue",
-    imagePadding: "p-8", // ეს ჩამოწევს პირველ დრონს ქვემოთ
+    // object-contain იცავს ჩამოჭრისგან, scale-95 ოდნავ (5%-ით) აპატარავებს, translate-y-2 დაბლა სწევს
+    imageClass: "object-contain object-center scale-95 translate-y-2", 
   },
   {
     imageSrc: "/matrice.png",
@@ -32,7 +33,7 @@ const DRONES: Drone[] = [
       "A survey and mapping drone with RTK positioning and a mechanical-shutter camera for detailed maps and 3D models.",
     tags: ["RTK Precision", "Large Scale", "Topography"],
     accentColor: "blue",
-    imagePadding: "p-4", // სტანდარტული დაშორება დანარჩენებისთვის
+    imageClass: "object-cover object-center", // ორიგინალი სტილი დანარჩენებისთვის
   },
   {
     imageSrc: "/mavic.png",
@@ -42,7 +43,7 @@ const DRONES: Drone[] = [
       "Captures RGB and multispectral imagery for NDVI mapping, crop analysis, and field monitoring.",
     tags: ["Multispectral", "NDVI", "Crop Health"],
     accentColor: "green",
-    imagePadding: "p-4", // სტანდარტული დაშორება დანარჩენებისთვის
+    imageClass: "object-cover object-center", // ორიგინალი სტილი დანარჩენებისთვის
   },
 ];
 
@@ -93,7 +94,7 @@ export default function Equipment() {
           viewport={{ once: true, margin: "-100px" }}
           className="mt-12 grid gap-6 md:grid-cols-3"
         >
-          {DRONES.map(({ imageSrc, name, role, description, tags, accentColor, imagePadding }) => {
+          {DRONES.map(({ imageSrc, name, role, description, tags, accentColor, imageClass }) => {
             const isBlue = accentColor === "blue";
 
             return (
@@ -105,12 +106,12 @@ export default function Equipment() {
                 className="group relative rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md overflow-hidden flex flex-col"
               >
                 {/* Image Section */}
-                <div className={`relative h-48 w-full bg-slate-100 ${imagePadding || "p-4"}`}>
+                <div className="relative h-48 w-full bg-slate-100 flex items-center justify-center overflow-hidden">
                   <Image
                     src={imageSrc}
                     alt={name}
                     fill
-                    className="object-contain object-center p-6" /* შევცვალეთ cover -> contain და დავამატეთ p-6 */
+                    className={imageClass} // აქ უკვე თითოეულს თავისი სტილი მიენიჭება
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
