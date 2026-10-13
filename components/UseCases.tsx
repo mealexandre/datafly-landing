@@ -1,43 +1,48 @@
 "use client";
 
-import { Building2, Tractor, HardHat, Zap, type LucideIcon } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
 
-type UseCase = {
-  icon: LucideIcon;
-  title: string;
+type Drone = {
+  imageSrc: string;
+  name: string;
+  role: string;
   description: string;
+  tags: string[];
   accentColor: "blue" | "green";
+  customImageClass?: string; // ვამატებთ ველს კონკრეტული სურათის სტილიზაციისთვის
 };
 
-const USE_CASES: UseCase[] = [
+const DRONES: Drone[] = [
   {
-    icon: HardHat,
-    title: "Construction & Infrastructure",
+    imageSrc: "/mini.png",
+    name: "DJI Mini 5 Pro",
+    role: "Aerial Imagery & Visual Inspection",
     description:
-      "Record site conditions, monitor construction progress, and inspect infrastructure using aerial imagery and 3D models.",
+      "A compact drone for aerial photography, site overviews, and visual inspection imagery.",
+    tags: ["Compact", "Fast Deployment", "Visual Inspection"],
     accentColor: "blue",
+    customImageClass: "mt-6", // ეს ჩამოწევს მხოლოდ პირველ დრონს დაბლა, ზომის შეუცვლელად
   },
   {
-    icon: Tractor,
-    title: "Agriculture & Agribusiness",
+    imageSrc: "/matrice.png",
+    name: "DJI Matrice 4E",
+    role: "Surveying & Mapping",
     description:
-      "Assess crop condition with multispectral imagery and NDVI analysis, and pinpoint areas to check in the field.",
-    accentColor: "green",
-  },
-  {
-    icon: Building2,
-    title: "Surveying & Land Development",
-    description:
-      "Use topographic surveys, elevation models, and detailed aerial maps to assess land and support site planning.",
+      "A survey and mapping drone with RTK positioning and a mechanical-shutter camera for detailed maps and 3D models.",
+    tags: ["RTK Precision", "Large Scale", "Topography"],
     accentColor: "blue",
+    customImageClass: "", // სტანდარტული ზომა და პოზიცია
   },
   {
-    icon: Zap,
-    title: "Energy & Utility Inspection",
+    imageSrc: "/mavic.png",
+    name: "DJI Mavic 3M",
+    role: "Multispectral Agriculture",
     description:
-      "Capture visual inspection imagery of energy and utility infrastructure to document asset conditions and help plan follow-up work.",
+      "Captures RGB and multispectral imagery for NDVI mapping, crop analysis, and field monitoring.",
+    tags: ["Multispectral", "NDVI", "Crop Health"],
     accentColor: "green",
+    customImageClass: "", // სტანდარტული ზომა და პოზიცია
   },
 ];
 
@@ -57,9 +62,9 @@ const cardVariants: Variants = {
   },
 };
 
-export default function UseCases() {
+export default function Equipment() {
   return (
-    <section id="use-cases" className="pt-10 pb-20 md:pt-12 md:pb-28">
+    <section id="equipment" className="py-20 md:py-28 bg-slate-50/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -69,14 +74,14 @@ export default function UseCases() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
           className="max-w-2xl"
         >
-          <span className="inline-block rounded-full border border-agro-green/20 bg-agro-green/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-agro-green">
-            Use Cases
+          <span className="inline-block rounded-full border border-tech-blue/20 bg-tech-blue/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-tech-blue">
+            Our Equipment
           </span>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-text-main sm:text-4xl">
-            Data for Your Site and Your Work
+            Our DJI Drone Fleet
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-text-muted">
-            From construction sites and farmland to utility networks, our mapping and inspection services help teams understand on-the-ground conditions and plan next steps.
+            We select the drone and camera system to suit your site, the work required, and the data you need.
           </p>
         </motion.div>
 
@@ -86,36 +91,57 @@ export default function UseCases() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="mt-10 grid gap-6 sm:grid-cols-2"
+          className="mt-12 grid gap-6 md:grid-cols-3"
         >
-          {USE_CASES.map(({ icon: Icon, title, description, accentColor }) => {
+          {DRONES.map(({ imageSrc, name, role, description, tags, accentColor, customImageClass }) => {
             const isBlue = accentColor === "blue";
 
             return (
               <motion.div
-                key={title}
+                key={name}
                 variants={cardVariants}
                 whileHover={{ scale: 1.015 }}
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                className="group rounded-2xl border border-slate-200/80 bg-white/80 p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md"
+                className="group relative rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md overflow-hidden flex flex-col"
               >
-                <div className="flex items-start gap-4">
-                  <div
-                    className={`inline-flex shrink-0 rounded-xl p-3.5 ${
-                      isBlue
-                        ? "bg-tech-blue/10 text-tech-blue"
-                        : "bg-agro-green/10 text-agro-green"
-                    }`}
-                  >
-                    <Icon className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
+                {/* Image Section */}
+                <div className="relative h-48 w-full bg-slate-100 flex items-center justify-center">
+                  <div className={`relative w-[85%] h-[85%] ${customImageClass || ""}`}>
+                     <Image
+                      src={imageSrc}
+                      alt={name}
+                      fill
+                      className="object-contain object-center" 
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-text-main">
-                      {title}
-                    </h3>
-                    <p className="mt-3 text-base leading-relaxed text-text-muted">
-                      {description}
-                    </p>
+                </div>
+
+                {/* Content Section */}
+                <div className="p-8 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-text-main">
+                    {name}
+                  </h3>
+                  <div className="text-sm font-semibold text-text-muted mt-1">
+                    {role}
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted flex-1">
+                    {description}
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors duration-200 ${
+                          isBlue
+                            ? "border-slate-200 bg-slate-50 text-text-muted group-hover:border-tech-blue/30 group-hover:text-tech-blue"
+                            : "border-slate-200 bg-slate-50 text-text-muted group-hover:border-agro-green/30 group-hover:text-agro-green"
+                        }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </motion.div>
