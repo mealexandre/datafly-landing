@@ -33,7 +33,7 @@ const PLANS: Plan[] = [
     features: [
       "NDVI & Crop Health Analytics",
       "Multispectral Imaging",
-      "Irrigation Stress Detection",
+      "Crop Variation Mapping", // <--- შეცვლილია
       "Field Boundary Mapping"
     ],
     isPopular: true,
@@ -42,11 +42,11 @@ const PLANS: Plan[] = [
   {
     name: "3D Models & Inspection",
     price: "2,900",
-    description: "Detailed digital twins and structural scanning.",
+    description: "Detailed 3D models and visual inspection imagery.", // <--- შეცვლილია
     features: [
       "High-Density Point Clouds",
-      "3D Digital Twins",
-      "Asset Tracking & Progress",
+      "3D Site & Asset Models", // <--- შეცვლილია
+      "Asset Mapping & Progress Monitoring", // <--- შეცვლილია
       "Visual Inspection Imagery"
     ],
     accentColor: "blue",
